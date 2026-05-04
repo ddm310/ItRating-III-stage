@@ -435,6 +435,7 @@ a[aria-current='page'] {
 .excursion_tabs {
     display: flex;
     gap: 0 30px;
+    flex-wrap: wrap
 }
 
 .excursion_button {
