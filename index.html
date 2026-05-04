@@ -12,12 +12,22 @@
   <title>Архитектурные жемчужины Витебска</title>
 </head>
 
-<body id="body" class="scroll">
+<body id="body">
+  <!--Круги на фон с анимацией пульсации-->
+  <div class="circles">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
   <!--Шапка сайта и навигация-->
   <div class="header_section">
     <div class="container">
       <header class="header">
-        <a class="logo" href="#body">
+        <!--Ссылка для пропуска навигации (по стандартам WGAC)-->
+        <a href="#main" class="skip-link">Перейти к содержанию</a>
+        <a class="logo" href="index.html">
           <svg class="logo_img" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35"
             fill="none">
             <path
@@ -27,31 +37,39 @@
           <p class="logo_text">Vitebsk</p>
         </a>
         <ul class="nav_list">
-          <li class="nav_item"></li>
-          <li class="nav_item">
-            <a href="#excursion_text" class="nav_link">Экскурсии</a>
-          </li>
-          <li class="nav_item">
-            <a href="#novelty" class="nav_link">Новинки</a>
-          </li>
-          <li class="nav_item">
-            <a href="#aboutUs" class="nav_link">О нас</a>
-          </li>
+          <div class='main_nav'>
+            <li class="nav_item">
+              <button class="nav_button" aria-label="Переключение языка на белорусский">BEL</button>
+            </li>
+            <li class="nav_item">
+              <a href="index.html" class="nav_link" aria-current="page"><b>Главная</b></a>
+            </li>
+            <li class="nav_item">
+              <a href="excursion.html" class="nav_link">Экскурсии</a>
+            </li>
+            <li class="nav_item">
+              <a href="quiz.html" class="nav_link">Викторина</a>
+            </li>
+            <li class="nav_item">
+              <a href="about.html" class="nav_link">О нас</a>
+            </li>
+          </div>
           <li class="nav_item audio_player">
-            <audio class="audio" src="audio/belorusskaya-narodnaya-kupalinka.mp3"></audio>
-            <button class="play_audio" aria-label="Начать играть музыку">▶</button>
+            <audio class="audio" src="audio/audio_for_site.mp3" preload="none"></audio>
+            <button class="play_audio" aria-label="Воспроизвести музыку"><span aria-hidden="true">▶</span>
+              <span class="visually-hidden">Музыка на фон</span></button>
           </li>
         </ul>
       </header>
     </div>
   </div>
   <!--Основная часть с текстом-->
-  <div class="main_section">
+  <div class="main_section" id="main">
     <div class="container">
       <main class="main">
         <div class="main_left">
           <div class="main_image">
-            <img class="main_img" src="img/main.webp" alt="">
+            <img class="main_img" src="img/main.webp" alt="Панорама архитектурных жемчужин Витебска" loading="lazy">
           </div>
         </div>
         <div class="main_right">
@@ -69,446 +87,6 @@
       </main>
     </div>
   </div>
-  <!--Часть с экскурсиями-->
-  <div class="excursion_section">
-    <div class="container">
-      <div class="excursion">
-        <div class="excursion_top">
-          <div class="excursion_text" id="excursion_text">
-            Экскурсии
-          </div>
-          <div class="excursion_btn_swipe">
-            <button class="excursion_button excursion_button-active" data-id="oldcity"
-              aria-label="Экскурсии в старом городе">
-              Старый город
-            </button>
-            <button class="excursion_button" data-id="zadvine" aria-label="Экскурсии в задвинье">
-              Задвинье
-            </button>
-            <button class="excursion_button" data-id="newcity" aria-label="Экскурсии в современной части города">
-              Сегодня
-            </button>
-          </div>
-        </div>
-        <div class="excursion_content">
-          <div class="excursion_block_all">
-            <div class="excursion_block excursion_block-active" id="oldcity-block">
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_oldcity/01.webp" alt="">
-                <p class="excursion_author">
-                  Улица Толстого, 2
-                </p>
-                <p class="excursion_name">
-                  Золотая рыбка с ключиком
-                </p>
-                <p class="excursion_lithography">
-                  20.02.2026
-                </p>
-                <p class="excursion_price">
-                  15 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_oldcity/02.webp" alt="">
-                <p class="excursion_author">
-                  Улица Суворова, 1
-                </p>
-                <p class="excursion_name">
-                  Главная улица старого города
-                </p>
-                <p class="excursion_lithography">
-                  17.02.2026
-                </p>
-                <p class="excursion_price">
-                  20 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_oldcity/03.webp" alt="">
-                <p class="excursion_author">
-                  Улица Крылова, 9
-                </p>
-                <p class="excursion_name">
-                  Свято-Успенский кафедральный собор
-                </p>
-                <p class="excursion_lithography">
-                  03.03.2026
-                </p>
-                <p class="excursion_price">
-                  12 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_oldcity/04.webp" alt="">
-                <p class="excursion_author">
-                  Улица Ленина, 36
-                </p>
-                <p class="excursion_name">
-                  Витебский краеведческий музей
-                </p>
-                <p class="excursion_lithography">
-                  08.02.2026
-                </p>
-                <p class="excursion_price">
-                  22 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_oldcity/05.webp" alt="">
-                <p class="excursion_author">
-                  Улица Пушкина, 1
-                </p>
-                <p class="excursion_name">
-                  Пушкинский пешеходный мост
-                </p>
-                <p class="excursion_lithography">
-                  28.02.2026
-                </p>
-                <p class="excursion_price">
-                  22 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_oldcity/06.webp" alt="">
-                <p class="excursion_author">
-                  Улица Замковая, 1
-                </p>
-                <p class="excursion_name">
-                  Церковь благой богородицы
-                </p>
-                <p class="excursion_lithography">
-                  05.03.2026
-                </p>
-                <p class="excursion_price">
-                  20 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-            </div>
-            <div class="excursion_block" id="zadvine-block">
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_zadvine/01.webp" alt="">
-                <p class="excursion_author">
-                  Улица Покровская, 11
-                </p>
-                <p class="excursion_name">
-                  Дом-музей Марка Шагала
-                </p>
-                <p class="excursion_lithography">
-                  15.02.2026
-                </p>
-                <p class="excursion_price">
-                  16 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_zadvine/02.webp" alt="">
-                <p class="excursion_author">
-                  Улица Революционная, 10
-                </p>
-                <p class="excursion_name">
-                  Большая Любавичская синагога
-                </p>
-                <p class="excursion_lithography">
-                  23.02.2026
-                </p>
-                <p class="excursion_price">
-                  14 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_zadvine/03.webp" alt="">
-                <p class="excursion_author">
-                  Улица Чайковского, 3
-                </p>
-                <p class="excursion_name">
-                  Золотое кольцо города "Двина"
-                </p>
-                <p class="excursion_lithography">
-                  18.02.2026
-                </p>
-                <p class="excursion_price">
-                  20 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_zadvine/04.webp" alt="">
-                <p class="excursion_author">
-                  Улица Покровская, 9
-                </p>
-                <p class="excursion_name">
-                  Витебская мелодия на французской скрипке
-                </p>
-                <p class="excursion_lithography">
-                  19.02.2026
-                </p>
-                <p class="excursion_price">
-                  13 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_zadvine/05.webp" alt="">
-                <p class="excursion_author">
-                  Улица Космонавтов, 10
-                </p>
-                <p class="excursion_name">
-                  Железнодорожный вокзал Витебска
-                </p>
-                <p class="excursion_lithography">
-                  01.03.2026
-                </p>
-                <p class="excursion_price">
-                  20 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_zadvine/06.webp" alt="">
-                <p class="excursion_author">
-                  Улица Революционная, 9
-                </p>
-                <p class="excursion_name">
-                  Ликёро-водочный завод «Придвинье»
-                </p>
-                <p class="excursion_lithography">
-                  24.02.2026
-                </p>
-                <p class="excursion_price">
-                  23 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-            </div>
-            <div class="excursion_block" id="newcity-block">
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_newcity/01.webp" alt="">
-                <p class="excursion_author">
-                  Проспект Фрунзе, 13а
-                </p>
-                <p class="excursion_name">
-                  Открытый летний амфитеатр
-                </p>
-                <p class="excursion_lithography">
-                  12.02.2026
-                </p>
-                <p class="excursion_price">
-                  19 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_newcity/02.webp" alt="">
-                <p class="excursion_author">
-                  Улица Белобородова, 6
-                </p>
-                <p class="excursion_name">
-                  Мемориал "Площадь Победы"
-                </p>
-                <p class="excursion_lithography">
-                  11.02.2026
-                </p>
-                <p class="excursion_price">
-                  17 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_newcity/03.webp" alt="">
-                <p class="excursion_author">
-                  Улица Ленина, 26А
-                </p>
-                <p class="excursion_name">
-                  Бизнес-центр "Марко-Сити"
-                </p>
-                <p class="excursion_lithography">
-                  07.02.2026
-                </p>
-                <p class="excursion_price">
-                  20 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_newcity/04.webp" alt="">
-                <p class="excursion_author">
-                  Улица Черняховского, 44
-                </p>
-                <p class="excursion_name">
-                  Жилой комплекс «Панорама»
-                </p>
-                <p class="excursion_lithography">
-                  10.03.2026
-                </p>
-                <p class="excursion_price">
-                  15 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_newcity/05.webp" alt="">
-                <p class="excursion_author">
-                  Улица Суворова, 3
-                </p>
-                <p class="excursion_name">
-                  Памятник «Витебский великан»
-                </p>
-                <p class="excursion_lithography">
-                  07.03.2026
-                </p>
-                <p class="excursion_price">
-                  12 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-              <div class="excursion_block_full">
-                <img class="excursion_img" src="img/excursions/ex_newcity/06.webp" alt="">
-                <p class="excursion_author">
-                  Московский проспект, 72 
-                </p>
-                <p class="excursion_name">
-                  Технологический университет
-                </p>
-                <p class="excursion_lithography">
-                  15.03.2026
-                </p>
-                <p class="excursion_price">
-                  21 BYN
-                </p>
-                <button class="excursion_btn">
-                  Записаться
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Часть с текстом о витебске-->
-  <div class="collection_section" id="novelty">
-    <div class="container">
-      <div class="collection">
-        <div class="col_logo_title">
-          <div class="col_logo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="79" viewBox="0 0 80 79" fill="none">
-              <path
-                d="M46.6407 21.9227L58.5227 11.1781L53.685 26.4498L52.9462 28.782L55.3599 28.3827L71.1646 25.7676L58.8384 35.9995L56.956 37.5621L59.2023 38.531L73.9119 44.8758L58.0107 46.8194L55.5823 47.1162L56.9482 49.1458L65.8925 62.436L51.4647 55.4741L49.2614 54.4109L49.3132 56.8568L49.6523 72.8729L41.2788 59.2159L40 57.1303L38.7212 59.2159L30.3477 72.8729L30.6868 56.8568L30.7386 54.4109L28.5353 55.4741L14.1075 62.436L23.0518 49.1458L24.4177 47.1162L21.9893 46.8194L6.08807 44.8758L20.7977 38.531L23.044 37.5621L21.1616 35.9995L8.83541 25.7676L24.6401 28.3827L27.0538 28.782L26.315 26.4498L21.4773 11.1781L33.3593 21.9227L35.1738 23.5636L35.8132 21.2022L40 5.73935L44.1868 21.2022L44.8262 23.5636L46.6407 21.9227Z"
-                stroke="#EEDB6D" stroke-width="3"></path>
-            </svg>
-          </div>
-          <p class="col_title">
-            Витебск — гармония истории, культуры и света
-          </p>
-        </div>
-        <p class="col_subtitle">
-          Витебск — город, где история и современность переплетаются в едином ритме, создавая неповторимый архитектурный
-          облик: величественный Успенский собор возвышается над Двиной как светлый символ города, Ратуша хранит дух
-          старинного Витебска и напоминает о магдебургском праве, уютный дом-музей Марка Шагала бережно удерживает
-          память о детстве великого художника, неоготический костёл Святой Варвары добавляет европейской изящности,
-          амфитеатр «Славянского базара» задаёт современный культурный тон, а губернаторский дворец в классическом стиле
-          завершает этот гармоничный ансамбль, превращая Витебск в город, который хочется открывать снова.
-        </p>
-        <a class="col_link" href="#body">
-          Ознакомиться
-        </a>
-      </div>
-    </div>
-  </div>
-  <!--Часть с командой-->
-  <div class="command_section" id="aboutUs">
-    <div class="container">
-      <div class="command">
-        <div class="command_left">
-          <img class="command_img" src="img/command/main.webp" alt="">
-        </div>
-        <div class="command_right">
-          <p class="command_title">
-            Наша команда
-          </p>
-          <p class="command_subtitle">
-            Мы — команда профессионалов, влюбленных в эстетику родного города. Как мастера прошлого по кирпичику
-            возводили Ратушу и Успенский собор, так и мы создаем наши проекты с вниманием к каждой детали. Нас
-            объединяет стремление сочетать классические традиции Витебска с инновациями будущего. Мы не просто работаем
-            — мы строим историю вместе с вами
-          </p>
-          <div class="command_people_image">
-            <img class="people_img" src="img/command/1.svg" alt="Иван Алексевич">
-            <img class="people_img" src="img/command/2.svg" alt="Алексей Иванович">
-            <img class="people_img" src="img/command/3.svg" alt="Марина Евгеньевна">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Часть с обратной связью-->
-  <div class="feedback_section" id="feedBack">
-    <div class="container">
-      <div class="feedback">
-        <p class="feedback_title">
-          Обратная связь
-        </p>
-        <form class="feedback_content">
-          <label for="fn">ФИО</label>
-          <input type="text" name="fn" class="feedback_input_text feedback_input" id="fn" required
-            placeholder='ФИО, например: Иванов Иван Иванович' aria-label="ФИО">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="feedback_input_text feedback_input" id="email" required
-            placeholder='Email, например: qwerty123@gmail.com или example@yandex.ru' aria-label="Email">
-          <label for="topic">Тема</label>
-          <input type="text" name="topic" class="feedback_input_text feedback_input" id="topic" required
-            placeholder='Тема, например: "Запись на экскурсию" или "Найдена ошибка"' aria-label="Тема">
-          <label for="mess">Сообщение</label>
-          <input type="text" name="mess" class="feedback_input_text feedback_input" id="mess" required
-            placeholder='Сообщение, например: Я хочу записаться на экскурсию "Золотая рыбка с ключиком"'
-            aria-label="Сообщение">
-          <input type="submit" class="feedback_input_submit feedback_input">
-        </form>
-      </div>
-    </div>
-  </div>
   <!--Подвал с копирайтом-->
   <div class="footer_section">
     <div class="container">
@@ -523,6 +101,8 @@
             </svg>
             <p class="logo_text">Vitebsk</p>
           </div>
+          <!--Секретная звёздочка для мини-игры-->
+          <div class="secret_star" data-page="index"></div>
           <div class="number">
             <p class="phone">
               8 (0212) 68-30-23
@@ -535,28 +115,19 @@
         <div class="footer_nav_social">
           <ul class="footer_nav_list">
             <li class="footer_nav_item">
-              <a href="#excursion_text" class="nav_link">Экскурсии</a>
-              <a href="#excursion_text" class="excursion_button excursion_button-active" data-id="oldcity">Старый
-                город</a>
-              <a href="#excursion_text" class="excursion_button" data-id="zadvine">Задвинье</a>
-              <a href="#excursion_text" class="excursion_button" data-id="newcity">Сегодня</a>
+              <a href="excursion.html" class="nav_link">Экскурсии</a>
             </li>
             <li class="footer_nav_item">
-              <a href="#novelty" class="nav_link">О Витебске</a>
-              <a href="#novelty" class="footer_nav_link">2026</a>
-              <a href="#novelty" class="footer_nav_link">2025</a>
-              <a href="#novelty" class="footer_nav_link">2024</a>
+              <a href="feedback.html" class="nav_link">Обратная связь</a>
             </li>
             <li class="footer_nav_item">
-              <a href="#aboutUs" class="nav_link">О нас</a>
-              <a href="#aboutUs" class="footer_nav_link">Экскурсоводы</a>
-              <a href="#aboutUs" class="footer_nav_link">Менеджеры</a>
-              <a href="#aboutUs" class="footer_nav_link">Программисты</a>
+              <a href="about.html" class="nav_link">О нас</a>
             </li>
           </ul>
           <div class="footer_social">
             <div class="footer_social_icon">
-              <a class="footer_social_link" href="https://www.facebook.com/gorodvitebsk/" target="_blank">
+              <a class="footer_social_link" href="https://www.facebook.com/gorodvitebsk/" target="_blank"
+                aria-label="Facebook">
                 <svg class="footer_icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                   fill="none">
                   <path
@@ -564,7 +135,8 @@
                     fill="#2C2D35"></path>
                 </svg>
               </a>
-              <a class="footer_social_link" href="https://www.instagram.com/vitebsk_official/" target="_blank">
+              <a class="footer_social_link" href="https://www.instagram.com/vitebsk_official/" target="_blank"
+                aria-label="Instagram">
                 <svg class="footer_icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                   fill="none">
                   <path
@@ -572,7 +144,8 @@
                     fill="#2C2D35"></path>
                 </svg>
               </a>
-              <a class="footer_social_link" href="https://www.youtube.com/@TRKVitebsk" target="_blank">
+              <a class="footer_social_link" href="https://www.youtube.com/@TRKVitebsk" target="_blank"
+                aria-label="YouTube">
                 <svg class="footer_icon" xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16"
                   fill="none">
                   <path
