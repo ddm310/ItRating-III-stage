@@ -111,7 +111,7 @@ if (LS_language == 'RUS') {
                 document.querySelector(".play_audio span").textContent = "▶";
                 document.querySelector(".play_audio").ariaLabel = "Воспроизвести музыку";
             });
-            document.querySelector(".play_audio span").textContent = "⏸";
+            document.querySelector(".play_audio span").textContent = "▌▌";
             document.querySelector(".play_audio").ariaLabel = "Поставить музыку на паузу";
         } else {
             audio.pause();
@@ -540,7 +540,7 @@ if (LS_language == 'RUS') {
                 document.querySelector(".play_audio span").textContent = "▶";
                 document.querySelector(".play_audio").ariaLabel = "Прайграць музыку";
             });
-            document.querySelector(".play_audio span").textContent = "⏸";
+            document.querySelector(".play_audio span").textContent = "▌▌";
             document.querySelector(".play_audio").ariaLabel = "Паставіць музыку на паўзу";
         } else {
             audio.pause();
