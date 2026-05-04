@@ -1,11 +1,13 @@
 :root {
-    --fc: #edece1;
-    --sc: #b8b176;
-    --tc: #2c2d35;
-    --ftc: #86928b;
-    --ffc: #f5f6f4;
-    --sxc: #e6e8d4;
-    --svc: #837e3d;
+    --fc: #ede9e1;
+    --sc: #46351e;
+    --tc: #36332d;
+    --ftc: #706e66;
+    --ffc: #f6f5f4;
+    --sxc: #e8e3d4;
+    --svc: #b8995a;
+    --background-color: #ede9e1a6;
+    --star-color: #ffd500;
 }
 
 *,
@@ -19,21 +21,26 @@
 }
 
 *:focus {
-    outline: 3px solid var(--sc);
-    outline-offset: 3px;
+    outline: 2px solid var(--sc);
+    outline-offset: 2px;
     border-radius: 4px;
 }
 
 html {
     width: 100%;
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 body {
+    position: relative;
     transition: opacity ease-in 0.2s;
     font-family: "Raleway", sans-serif;
     font-size: 18px;
     font-weight: 500;
+    margin: 0;
+    padding: 0;
 }
 
 body[unresolved] {
@@ -41,6 +48,20 @@ body[unresolved] {
     display: block;
     overflow: hidden;
     position: relative;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--sc);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 .scroll-active {
@@ -52,9 +73,170 @@ body[unresolved] {
 }
 
 .container {
+    position: relative;
     max-width: 1130px;
     padding: 0 10px;
     margin: 0 auto;
+}
+
+.secret_star {
+    width: 30px;
+    height: 30px;
+    opacity: 0.2;
+    position: absolute;
+    background-color: var(--star-color);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    z-index: 3;
+    transition: opacity .5s ease;
+}
+
+.secret_star:hover {
+    opacity: 0.7;
+}
+
+.secret_star-clicked {
+    pointer-events: none;
+    animation: starBlowsUp 5s ease forwards;
+}
+
+.secret_star-collected {
+    display: none;
+}
+
+.secret_star[data-page="index"] {
+    top: 90px;
+    left: 45px;
+    transform: rotate(310deg);
+}
+
+.secret_star[data-page="excursion"] {
+    top: 10px;
+    left: 10px;
+    transform: rotate(270deg);
+}
+
+.secret_star[data-page="quiz"] {
+    top: 95px;
+    left: 422px;
+    transform: rotate(210deg);
+}
+
+.secret_star[data-page="about"] {
+    top: 115px;
+    left: 184px;
+    transform: rotate(67deg);
+}
+
+.secret_star[data-page="feedback"] {
+    left: 167px;
+    transform: rotate(43deg);
+}
+
+@keyframes starBlowsUp {
+    0% {
+        opacity: 0.7;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    90% {
+        transform: rotate(1500deg);
+        opacity: 1;
+    }
+
+    99% {
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.circles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* чтобы круги не мешали кликать по контенту */
+    z-index: -1;
+    /* на задний план */
+}
+
+/* Общие стили для всех кругов */
+.circle {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color));
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: pulse 4s ease-in-out infinite alternate;
+    filter: blur(0.5px);
+}
+
+/* Индивидуальные позиции и размеры (чуть разные) */
+.circle:nth-child(1) {
+    top: 10%;
+    left: 5%;
+    width: 180px;
+    height: 180px;
+    --color: var(--svc);
+    animation-delay: 0s;
+}
+
+.circle:nth-child(2) {
+    top: 20%;
+    right: 8%;
+    width: 100px;
+    height: 100px;
+    --color: #9C845C;
+    animation-delay: 0.5s;
+}
+
+.circle:nth-child(3) {
+    bottom: 25%;
+    left: 15%;
+    width: 220px;
+    height: 220px;
+    --color: var(--svc);
+    animation-delay: 1s;
+}
+
+.circle:nth-child(4) {
+    bottom: 10%;
+    right: 12%;
+    width: 120px;
+    height: 120px;
+    --color: #DACCAF;
+    animation-delay: 1.5s;
+}
+
+.circle:nth-child(5) {
+    top: 45%;
+    left: 40%;
+    width: 160px;
+    height: 160px;
+    --color: #F3EFE1;
+    animation-delay: 2s;
+}
+
+/* Пульсация: меняем размер и прозрачность */
+@keyframes pulse {
+    0% {
+        transform: scale(0.7);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0.9;
+    }
 }
 
 /* HEADER */
@@ -85,21 +267,16 @@ body[unresolved] {
     color: var(--sc);
 }
 
-.nav_list {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-}
-
-.nav_item:first-child {
-    display: none;
-    z-index: 3;
+a[aria-current='page'] {
+    color: var(--sc);
+    font-weight: bolder;
+    text-decoration: none;
 }
 
 .nav_link {
     font-size: 20px;
     font-weight: 500;
-    line-height: 23px;
+    line-height: 35px;
     color: var(--tc);
     transition: color 0.3s ease;
     margin-bottom: 5px;
@@ -109,6 +286,20 @@ body[unresolved] {
     color: var(--sc);
 }
 
+.nav_list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 40px;
+}
+
+.main_nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 40px;
+}
+
 .audio_player {
     display: flex;
     align-items: center;
@@ -116,12 +307,58 @@ body[unresolved] {
 }
 
 .play_audio {
-    font-size: 22px;
+    font-size: 32px;
     background: none;
     border: none;
     cursor: pointer;
     color: #2C2D35;
     margin-bottom: 5px;
+    margin-top: -3px;
+}
+
+/* BREADCRUMBS */
+.breadcrumbs {
+    padding: 12px 0;
+}
+
+.breadcrumbs_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs_item {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.breadcrumbs_link {
+    color: var(--sc);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumbs_link:hover {
+    color: var(--svc);
+    text-decoration: underline;
+}
+
+.breadcrumbs_separator {
+    margin: 0 4px;
+    color: var(--ftc);
+    user-select: none;
+}
+
+.breadcrumbs_current {
+    color: var(--tc);
+    font-weight: 500;
+    pointer-events: none;
 }
 
 /* MAIN */
@@ -141,6 +378,12 @@ body[unresolved] {
 .main_heading span {
     color: var(--sc);
 }
+
+.main_img {
+    max-width: 100%;
+    height: auto;
+}
+
 
 .main_subtitle {
     font-size: 18px;
@@ -172,7 +415,7 @@ body[unresolved] {
 
 /* excursion (карточки и переключатели) */
 .excursion_section {
-    margin-top: 70px;
+    margin-top: 30px;
 }
 
 .excursion_top {
@@ -189,7 +432,7 @@ body[unresolved] {
     color: var(--tc);
 }
 
-.excursion_btn_swipe {
+.excursion_tabs {
     display: flex;
     gap: 0 30px;
 }
@@ -211,7 +454,7 @@ body[unresolved] {
 }
 
 .excursion_button-active {
-    background: var(--svc);
+    background: var(--sc);
     color: var(--ffc);
 }
 
@@ -222,8 +465,8 @@ body[unresolved] {
 
 .excursion_block-active {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 30px;
 }
 
@@ -231,35 +474,20 @@ body[unresolved] {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Карточка — вертикальный флекс, чтобы элементы растягивались по ширине */
-.excursion_block_full {
-    background: var(--fc);
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    max-width: 350px;
-    padding: 20px;
-    padding-bottom: 30px;
-    text-align: left;
-    box-sizing: border-box;
-}
-
-/* Картинка — не ломает карточку */
-.excursion_block_full>img {
+.excursion_card>img {
     width: auto;
     height: 380px;
     object-fit: cover;
     min-height: 0;
 }
 
-/* Автор, название, дата, цена */
-.excursion_author {
+/* Название, дата, цена */
+.excursion_address {
     padding-top: 20px;
     font-size: 18px;
     font-weight: 500;
     line-height: 21px;
-    color: var(--fc);
+    color: var(--tc);
 }
 
 .excursion_name {
@@ -268,10 +496,10 @@ body[unresolved] {
     font-weight: 500;
     line-height: 35px;
     color: var(--tc);
-    /* по умолчанию — высота не фиксирована, line-clamp добавим в адаптиве */
+    min-height: 80px;
 }
 
-.excursion_lithography {
+.excursion_date {
     padding-top: 8px;
     font-size: 18px;
     font-weight: 500;
@@ -288,9 +516,28 @@ body[unresolved] {
     margin-bottom: 15px;
 }
 
-/* Кнопка в карточке — гибкая */
+/* Карточка */
+.excursion_card {
+    background: var(--fc);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: calc((100% - 60px) / 3);
+    padding: 20px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: box-shadow .5s ease;
+}
+
+.excursion_card:hover {
+    box-shadow: 6px 6px 5px 2px color-mix(in oklab, var(--tc) 75%, var(--sc) 25%);
+}
+
+/* Кнопка — резиновая, всегда влезает в карточку */
 .excursion_btn {
-    width: 310px;
+    width: 100%;
+    max-width: 310px;
     height: 65px;
     border: 1px solid var(--sc);
     font-size: 20px;
@@ -300,6 +547,8 @@ body[unresolved] {
     transition: all 0.3s ease;
     background: transparent;
     cursor: pointer;
+    margin: 15px auto 0;
+    display: block;
 }
 
 .excursion_btn:hover {
@@ -311,38 +560,152 @@ body[unresolved] {
     margin-top: 30px;
 }
 
-/* COLLECTION */
-.collection_section {
+/* MAP */
+
+.map_section {
+    margin-top: 40px;
+}
+
+.map_text {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 44px;
+    text-overflow: ellipsis;
+    color: var(--tc);
+    margin-bottom: 30px;
+}
+
+.map_content {
+    width: 100%;
+    height: 500px;
+}
+
+/* QUIZ */
+
+.quiz_text {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    line-height: 44px;
+    text-overflow: ellipsis;
+    color: var(--tc);
+}
+
+.quiz_question {
+    font-size: 32px;
+    margin: 15px 0 20px;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.quiz_answer {
+    font-size: 20px;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0;
+    color: var(--sc);
+    border: var(--sc) solid 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: all .5s ease;
+    display: block;
+    width: 100%;
+    text-align: left;
+    background-color: var(--ffc);
+}
+
+.quiz_answers {
+    position: relative;
+}
+
+.quiz_answer-correct {
+    background-color: #116500;
+    color: #fff;
+    border: #0f5a00 2px solid;
+}
+
+.quiz_answer-wrong {
+    background-color: #900;
+    color: #fff;
+    border: #6f0000 2px solid;
+}
+
+.quiz_answer-answered {
+    cursor: default;
+}
+
+.quiz_answer:not(.quiz_answer-answered):hover {
+    color: #fff;
+    background-color: var(--sc);
+}
+
+.quiz_verdict {
+    font-size: 40px;
+    margin: 15px 0;
+}
+
+.quiz_count {
+    font-size: 24px;
+    margin: 5px 0;
+}
+
+.quiz_restart {
+    padding: 16px 28px;
+    margin: 30px 0;
+    font-size: 20px;
+    font-weight: 600;
+    background: var(--svc);
+    color: var(--ffc);
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background .5s ease, color .5s ease;
+}
+
+.quiz_restart:hover {
+    background: var(--sc);
+    color: var(--ffc);
+}
+
+.quiz_restart:active {
+    background: var(--sc);
+    color: var(--ffc);
+    transform: translateY(2px);
+}
+
+/* vitebsk */
+.vitebsk_section {
     background-image: url(img/foot.webp);
     margin-top: 70px;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-bottom: -50px;
 }
 
-.collection {
+.vitebsk {
     padding: 70px 0;
 }
 
-.col_logo_title {
+.vit_logo_title {
     display: flex;
     gap: 20px;
 }
 
-.col_logo {
+.vit_logo {
     max-width: 80px;
     max-height: 80px;
     width: 100%;
     height: 100%;
 }
 
-.col_title {
+.vit_title {
     font-size: 40px;
     font-weight: 500;
     line-height: 80px;
     color: var(--ffc);
 }
 
-.col_subtitle {
+.vit_subtitle {
     margin-top: 20px;
     font-size: 18px;
     font-weight: 500;
@@ -352,7 +715,7 @@ body[unresolved] {
 }
 
 /* col link */
-.col_link {
+.vit_link {
     display: inline-block;
     margin-top: 60px;
     font-size: 20px;
@@ -364,40 +727,40 @@ body[unresolved] {
     transition: background-color 0.3s ease;
 }
 
-.col_link:hover {
+.vit_link:hover {
     background: #faeb97;
 }
 
-/* COMMAND */
-.command_section {
-    padding: 70px 0;
+/* TEAM */
+.team_section {
+    margin-top: 30px;
 }
 
-.command {
+.team {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
 }
 
-.command_img {
+.team_img {
     max-width: 430px;
     max-height: 430px;
 }
 
-.command_right {
+.team_right {
     max-width: 635px;
     width: 100%;
 }
 
-.command_title {
+.team_title {
     font-size: 38px;
     font-weight: 500;
     line-height: 42px;
     color: var(--tc);
 }
 
-.command_subtitle {
+.team_subtitle {
     padding-top: 20px;
     font-size: 18px;
     font-weight: 500;
@@ -405,7 +768,7 @@ body[unresolved] {
     color: var(--tc);
 }
 
-.command_people_image {
+.team_people_image {
     display: flex;
     padding-top: 20px;
     gap: 25px;
@@ -416,6 +779,7 @@ body[unresolved] {
     max-height: 80px;
     width: 100%;
     height: 100%;
+    clip-path: circle(50%);
 }
 
 /* FEEDBACK */
@@ -432,11 +796,22 @@ body[unresolved] {
     width: 100%;
     margin: 15px 0;
     border: 1px solid var(--sc);
-    transition: all 0.3s ease;
+    transition: color .3s ease, background .3s ease, box-shadow .3s ease, scrollbar-color .3s ease;
 }
 
-label {
-    display: none;
+textarea {
+    resize: none;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 .feedback_input_text {
@@ -448,6 +823,11 @@ label {
     border-radius: 8px;
 }
 
+.feedback_input_text[name="mess"] {
+    scrollbar-color: transparent transparent;
+}
+
+
 .feedback_input_text::placeholder {
     color: var(--ftc);
 }
@@ -456,7 +836,7 @@ label {
     border-color: var(--svc);
     background: var(--ffc);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(89, 141, 102, 0.25);
+    box-shadow: 0 0 0 3px #8d825940;
 }
 
 .feedback_input_text:hover {
@@ -468,19 +848,165 @@ label {
     margin-bottom: 30px;
     font-size: 20px;
     font-weight: 600;
-    color: var(--sc);
-    background: var(--sc);
+    background: var(--svc);
+    color: var(--ffc);
     border-radius: 10px;
     cursor: pointer;
 }
 
 .feedback_input_submit:hover {
-    background: var(--svc);
+    background: var(--sc);
     color: var(--ffc);
 }
 
 .feedback_input_submit:active {
+    background: var(--sc);
+    color: var(--ffc);
+    transform: translateY(2px);
+}
+
+/* BOOKING */
+
+.booking_title {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 40px;
+    color: var(--tc);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.booking_input {
+    width: 100%;
+    margin: 15px 0;
+    border: 1px solid var(--sc);
+    transition: color .3s ease, background .3s ease, box-shadow .3s ease, scrollbar-color .3s ease;
+}
+
+.booking_input_text {
+    padding: 14px 18px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--tc);
+    background: var(--ffc);
+    border-radius: 8px;
+}
+
+.booking_input_not_text {
+    padding: 14px 18px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--tc);
+    background: var(--ffc);
+    border-radius: 8px;
+    width: 49%;
+}
+
+.booking_flex_div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.booking_input_text::placeholder {
+    color: var(--ftc);
+}
+
+.booking_input_text:focus {
+    border-color: var(--svc);
+    background: var(--ffc);
+    outline: none;
+    box-shadow: 0 0 0 3px #8d825940;
+}
+
+.booking_input_text:hover {
+    background: var(--fc);
+}
+
+.booking_input_submit {
+    padding: 16px 28px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 600;
     background: var(--svc);
+    color: var(--ffc);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.booking_input_submit:hover {
+    background: var(--sc);
+    color: var(--ffc);
+}
+
+.booking_input_submit:active {
+    background: var(--sc);
+    color: var(--ffc);
+    transform: translateY(2px);
+}
+
+/* GAME */
+.game_text {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    line-height: 44px;
+    text-overflow: ellipsis;
+    color: var(--tc);
+}
+
+.game_rules {
+    font-size: 22px;
+    text-overflow: ellipsis;
+}
+
+.game_attempts {
+    font-size: 22px;
+    margin-bottom: 30px;
+    text-overflow: ellipsis;
+}
+
+.game_content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.game_img {
+    width: 240px;
+    height: 330px;
+    margin: 0 15px 50px;
+    transition: filter 1s ease;
+    user-select: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.game_img-hidden {
+    filter: brightness(0) invert(0.6) sepia(1) hue-rotate(8deg);
+}
+
+.game_button {
+    padding: 16px 28px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    background: var(--svc);
+    color: var(--ffc);
+    border-radius: 10px;
+    margin-right: 30px;
+    cursor: pointer;
+    width: 100%;
+    transition: background .5s ease, color .5s ease;
+}
+
+.game_button:hover {
+    background: var(--sc);
+    color: var(--ffc);
+}
+
+.game_button:active {
+    background: var(--sc);
     color: var(--ffc);
     transform: translateY(2px);
 }
@@ -488,12 +1014,13 @@ label {
 /* FOOTER */
 .footer_section {
     background: var(--fc);
+    margin-top: 50px;
 }
 
 .footer {
     padding: 23px 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 }
 
@@ -535,7 +1062,7 @@ label {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
-    color: var(--ftc);
+    color: var(--sc);
     padding: 0;
     padding-bottom: 6px;
     background: transparent;
@@ -546,6 +1073,7 @@ label {
 }
 
 .footer_nav_item .excursion_button:hover {
+    color: var(--sc);
     background: transparent;
 }
 
@@ -553,7 +1081,7 @@ label {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
-    color: var(--ftc);
+    color: var(--sc);
 }
 
 .footer_nav_link:hover {
@@ -636,16 +1164,6 @@ ul li {
     list-style: none;
 }
 
-img {
-    vertical-align: top;
-}
-
-img,
-svg {
-    max-width: 100%;
-    height: auto;
-}
-
 address {
     font-style: normal;
 }
@@ -668,8 +1186,6 @@ button,
 input[type=submit] {
     display: inline-block;
     box-shadow: none;
-    background-color: transparent;
-    background: none;
     cursor: pointer;
 }
 
@@ -693,9 +1209,9 @@ legend {
       ============================ */
 
 /* Общие защитные правила для адаптива */
-.excursion_block_full,
+.excursion_card,
 .excursion_block,
-.excursion_btn_swipe .excursion_button,
+.excursion_tabs .excursion_button,
 .feedback_content,
 .feedback_input,
 .feedback_input_text {
@@ -703,8 +1219,8 @@ legend {
 }
 
 .excursion_name,
-.col_subtitle,
-.command_subtitle,
+.vit_subtitle,
+.team_subtitle,
 .footer_nav_link,
 .feedback_input_text {
     word-break: break-word;
@@ -744,7 +1260,7 @@ legend {
         line-height: 60px;
     }
 
-    .excursion_block_full {
+    .excursion_card {
         max-width: 320px;
     }
 }
@@ -761,6 +1277,11 @@ legend {
     .container {
         padding: 0 20px;
         /* Чуть больше отступа по краям */
+    }
+
+    .secret_star[data-page="quiz"] {
+        top: 140px;
+        left: 281px;
     }
 
     /* --- HEADER --- */
@@ -780,11 +1301,26 @@ legend {
         flex-wrap: wrap;
         justify-content: center;
         gap: 15px 20px;
-        /* Отступы между ссылками */
+    }
+
+    .main_nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 20px;
     }
 
     .nav_link {
         font-size: 18px;
+        line-height: 23px;
+    }
+
+    /* BREADCRUMBS */
+    .breadcrumbs {
+        padding: 8px 0;
+    }
+
+    .breadcrumbs_item {
+        font-size: 12px;
     }
 
     /* --- MAIN SECTION --- */
@@ -833,8 +1369,8 @@ legend {
         font-size: 30px;
     }
 
-    /* Кнопки фильтров (Франция, Германия...) */
-    .excursion_btn_swipe {
+    /* Кнопки фильтров */
+    .excursion_tabs {
         width: 100%;
         overflow-x: auto;
         /* Добавляем скролл, если не влезут */
@@ -850,14 +1386,18 @@ legend {
         /* Центрируем карточки */
     }
 
-    .excursion_block_full {
-        max-width: 100%;
-        /* Карточка занимает всю ширину контейнера */
+    .excursion_name {
+        min-height: 0;
+    }
+
+    .excursion_card {
         width: 100%;
+        /* вместо max-width: 100% */
+        max-width: none;
         margin-bottom: 20px;
     }
 
-    .excursion_block_full>img {
+    .excursion_card>img {
         width: 100%;
         height: auto;
         max-height: 400px;
@@ -870,41 +1410,41 @@ legend {
         /* Кнопка "Записаться" во всю ширину */
     }
 
-    /* --- COLLECTION (Yellow section) --- */
-    .collection {
+    /* --- vitebsk (Yellow section) --- */
+    .vitebsk {
         padding: 50px 0;
     }
 
-    .col_logo_title {
+    .vit_logo_title {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    .col_title {
+    .vit_title {
         font-size: 30px;
         line-height: 1.2;
     }
 
-    .col_subtitle {
+    .vit_subtitle {
         text-align: center;
         font-size: 16px;
     }
 
-    .col_link {
+    .vit_link {
         display: block;
         margin: 40px auto 0 auto;
         text-align: center;
         width: fit-content;
     }
 
-    /* --- COMMAND (Team) --- */
-    .command {
+    /* --- team (Team) --- */
+    .team {
         flex-direction: column;
         text-align: center;
     }
 
-    .command_img {
+    .team_img {
         width: 100%;
         height: auto;
         max-width: 500px;
@@ -912,15 +1452,15 @@ legend {
         margin: 0 auto;
     }
 
-    .command_right {
+    .team_right {
         max-width: 100%;
     }
 
-    .command_title {
+    .team_title {
         font-size: 30px;
     }
 
-    .command_people_image {
+    .team_people_image {
         justify-content: center;
         /* Центрируем иконки людей */
     }
@@ -986,6 +1526,15 @@ legend {
         gap: 12px;
     }
 
+    .secret_star[data-page="quiz"] {
+        top: 296px;
+        left: 150px;
+    }
+
+    .main_nav {
+        gap: 12px;
+    }
+
     /* MAIN */
     .main_heading {
         font-size: 32px;
@@ -1014,12 +1563,12 @@ legend {
         width: 100%;
     }
 
-    .excursion_block_full {
+    .excursion_card {
         max-width: 100%;
         padding: 15px;
     }
 
-    .excursion_block_full>img {
+    .excursion_card>img {
         min-height: 0;
         height: auto;
     }
@@ -1029,10 +1578,9 @@ legend {
         font-size: 20px;
         line-height: 26px;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        min-height: calc(26px * 3);
+        min-height: 62px;
     }
 
     .excursion_price {
@@ -1045,22 +1593,22 @@ legend {
         font-size: 18px;
     }
 
-    /* COLLECTION */
-    .col_title {
+    /* vitebsk */
+    .vit_title {
         font-size: 28px;
         line-height: 34px;
     }
 
-    .col_subtitle {
+    .vit_subtitle {
         font-size: 16px;
     }
 
-    /* COMMAND */
-    .command_title {
+    /* team */
+    .team_title {
         font-size: 28px;
     }
 
-    .command_subtitle {
+    .team_subtitle {
         font-size: 16px;
     }
 
