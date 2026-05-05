@@ -86,8 +86,11 @@ function audioPlay(bool) {
 }
 
 // Автозапуск аудио при первом клике пользователя
-document.addEventListener('click', () => {
-    audioPlay(audio.paused);
+document.addEventListener('click', (e) => {
+    const isPlayButton = e.target.closest('.play_audio');
+    if (!isPlayButton) {
+        audioPlay(audio.paused);
+    }
 }, { once: true }); // выполнится один раз
 
 // Управление кастомным аудиоплеером (пуск/пауза)
