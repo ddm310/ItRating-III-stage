@@ -8,7 +8,6 @@ if (!localStorage.getItem('language')) {
 
 const russian = localStorage.getItem('language') == 'RUS';
 
-// #region Functions
 // Функция для валидации полей
 function validate(name, email, subject, message, people) {
     // Проверка ФИО
@@ -63,9 +62,6 @@ function sendMessage(text, nameOfPage) {
         });
 }
 
-// #endregion
-
-// #region Audio
 const audio = document.querySelector('.audio');
 
 // Функция для запуска / выключения аудио
@@ -107,9 +103,6 @@ document.querySelector(".audio").addEventListener("ended", () => {
     audio.currentTime = 0;
     audioPlay(true);
 });
-// #endregion
-
-// #region Star
 
 if (!localStorage.getItem('starsCollected')) {
     localStorage.setItem('starsCollected', 0)
@@ -146,6 +139,8 @@ if (star) {
         }
     }
 
+    minigame();
+
     star.addEventListener('click', () => {
         if (star.classList.contains('secret_star-clicked')) { return; }
         star.classList.add('secret_star-clicked');
@@ -154,9 +149,7 @@ if (star) {
         minigame();
     })
 }
-// #endregion
 
-// #region Telegram
 if (window.location.pathname.includes('feedback.html')) {
     document.querySelector(".feedback_input_submit").addEventListener("click", (e) => {
         e.preventDefault();
@@ -222,7 +215,6 @@ if (window.location.pathname.includes('booking.html')) {
     })
 }
 
-// #endregion
 
 // Проверяем, на какой странице пользователь
 if (window.location.pathname.includes('booking.html')) {
@@ -259,6 +251,8 @@ languageButton.addEventListener('click', () => {
     location.reload();
 })
 
+// Изменяем текста элементов, если язык – белорусский
+
 if (!russian) {
 
     document.title = 'Архітэктурныя жамчужыны Віцебска';
@@ -289,7 +283,7 @@ if (!russian) {
     document.querySelector('.footer_social_reserved').textContent = 'Усе правы абаронены';
     document.querySelector('.name').textContent = 'Майстэрня';
 
-
+    // Страница, на которой находится пользователь
     const page = window.location.pathname.split('/').pop();
 
     if (page != 'index.html') {
@@ -449,7 +443,6 @@ if (!russian) {
 }
 
 // За переключением языков, ведь тут нету текста, который надо менять
-// #region Excursion
 // Подготовка карточек экскурсий: aria-label, обработчик кнопки
 document.querySelectorAll('.excursion_card').forEach(block => {
     const name = block.querySelector('.excursion_name').textContent.trim();
@@ -491,4 +484,3 @@ document.querySelectorAll('.excursion_button').forEach(button => {
         });
     });
 });
-// #endregion
