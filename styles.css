@@ -400,6 +400,7 @@ a[aria-current='page'] {
     height: 65px;
     border: 1px solid var(--sc);
     justify-content: center;
+    background-color: var(--ffc);
     align-items: center;
     font-size: 20px;
     font-weight: 500;
