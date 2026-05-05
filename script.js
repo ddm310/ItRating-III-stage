@@ -18,7 +18,7 @@ function validate(name, email, subject, message, people) {
     }
 
     // Проверка Email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
     if (!emailRegex.test(email)) {
         return russian ? "Введите корректный email." : "Увядзіце карэктны email.";
     }
@@ -73,14 +73,14 @@ function audioPlay(bool) {
     if (bool) {
         audio.play().catch(e => {
             console.error((russian ? "Произошла ошибка при запуске или паузы аудио. Лог ошибки: " : "Адбылася памылка пры запуску ці паўзы аўдыё. Лог памылкі: ") + e);
-            document.querySelector(".play_audio span").textContent = "▶";
+            document.querySelector(".play_audio span").innerHTML = "▶&#xFE0E;";
             document.querySelector(".play_audio").ariaLabel = russian ? "Воспроизвести музыку" : "Прайграць музыку";
         });
-        document.querySelector(".play_audio span").textContent = "▌▌";
+        document.querySelector(".play_audio span").innerHTML = "⏸︎&#xFE0E;";
         document.querySelector(".play_audio").ariaLabel = russian ? "Поставить музыку на паузу" : "Паставіць музыку на паўзу";
     } else {
         audio.pause();
-        document.querySelector(".play_audio span").textContent = "▶";
+        document.querySelector(".play_audio span").innerHTML = "▶&#xFE0E;";
         document.querySelector(".play_audio").ariaLabel = russian ? "Воспроизвести музыку" : "Прайграць музыку";
     }
 }
@@ -196,7 +196,7 @@ if (window.location.pathname.includes('booking.html')) {
         const validationResult = validate(name, email, excursion, undefined, people);
 
         if ([name, excursion, email, people, payingMethod].some(x => x === '')) {
-            alert('Все поля кроме примечаний должны быть заполнены.');
+            alert(russian ? 'Все поля кроме примечаний должны быть заполнены.' : 'Усе палі акрамя нататак павінны быць запоўненыя.');
             return;
         } else if (validationResult) {
             alert(validationResult);
@@ -206,7 +206,7 @@ if (window.location.pathname.includes('booking.html')) {
 
         // Формирование текста для Telegram
         const text =
-            "Запись на экскурсию!\n" +
+            (russian ? "Запись на экскурсию!\n" : "Запись на экскурсию (BEL)!\n") +
             "\nИмя: " + name +
             "\nEmail: " + email +
             "\nНазвание экскурсии: " + excursion +
@@ -464,8 +464,14 @@ document.querySelectorAll('.excursion_button').forEach(button => {
     button.addEventListener('click', () => {
 
         // Сбрасываем активную кнопку
-        document.querySelectorAll('.excursion_button').forEach(btn => btn.classList.remove('excursion_button-active'));
-        document.querySelectorAll('.excursion_button[data-id="' + button.dataset.id + '"]').forEach(div => { div.classList.add('excursion_button-active') });
+        document.querySelectorAll('.excursion_button').forEach(btn => {
+            btn.classList.remove('excursion_button-active')
+            btn.setAttribute('aria-pressed', 'false');
+        });
+        document.querySelectorAll('.excursion_button[data-id="' + button.dataset.id + '"]').forEach(div => {
+            div.classList.add('excursion_button-active')
+            div.setAttribute('aria-pressed', 'true');
+        });
 
         // Определяем нужный блок по data-id
         const targetId = button.dataset.id + '-block';
@@ -474,6 +480,7 @@ document.querySelectorAll('.excursion_button').forEach(button => {
         document.querySelectorAll('.excursion_block').forEach(block => {
             if (block.id === targetId) {
                 block.classList.add('excursion_block-active');
+
             } else {
                 block.classList.remove('excursion_block-active');
             }
