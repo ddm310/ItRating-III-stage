@@ -59,7 +59,7 @@
                     <li class="nav_item audio_player">
                         <audio class="audio" src="audio/audio_for_site.mp3" preload="none"></audio>
                         <button class="play_audio" aria-label="Воспроизвести музыку"><span aria-hidden="true">▶</span>
-                            <span class="visually-hidden">Музыка на фон</span></button>
+                            <span class="visually-hidden">Музыка на фон, городские мотивы</span></button>
                     </li>
                 </ul>
             </header>
@@ -94,16 +94,16 @@
                 <form class="feedback_content">
                     <label for="f_fn" class="visually-hidden">Полное ФИО</label>
                     <input type="text" name="f_fn" class="feedback_input_text feedback_input fn" id="f_fn"
-                        placeholder='Полное ФИО, например: Иванов Иван Иванович' aria-required="true">
+                        placeholder='Полное ФИО, например: Иванов Иван Иванович' aria-required="true" required>
                     <label for="f_email" class="visually-hidden">Email</label>
                     <input type="text" name="f_email" class="feedback_input_text feedback_input" id="f_email"
-                        placeholder='Email, например: qwerty123@gmail.com или example@yandex.ru' aria-required="true">
+                        placeholder='Email, например: example@gmail.com' aria-required="true" required>
                     <label for="topic" class="visually-hidden">Тема</label>
                     <input type="text" name="topic" class="feedback_input_text feedback_input" id="topic"
-                        placeholder='Тема, например: "Найдена ошибка"' aria-required="true">
+                        placeholder='Тема, например: "Найдена ошибка"' aria-required="true" required>
                     <label for="mess" class="visually-hidden">Сообщение</label>
                     <textarea name="mess" class="feedback_input_text feedback_input" id="mess" placeholder='Сообщение'
-                        rows="4" aria-required="true"></textarea>
+                        rows="4" aria-required="true" required></textarea>
                     <input type="submit" id="submit" class="feedback_input_submit feedback_input">
                 </form>
             </div>
