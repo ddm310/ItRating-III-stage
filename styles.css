@@ -963,8 +963,16 @@ textarea {
 
 .game_attempts {
     font-size: 22px;
-    margin-bottom: 30px;
     text-overflow: ellipsis;
+}
+
+.game_win {
+    font-size: 40px;
+    margin: 15px 0 30px;
+}
+
+.game_win-hidden {
+    font-size: 0;
 }
 
 .game_content {
