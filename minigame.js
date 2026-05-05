@@ -123,7 +123,7 @@ function initialization() {
         }
         randomImages.push(path);
     }
-    randomImages = [...shuffle(randomImages), ...shuffle(randomImages)];
+    randomImages = shuffle([...randomImages, ...randomImages]);
 
     attempts = 0;
     document.querySelector('.game_attempts').textContent = languageIsRus ? 'Попыток: 0' : 'Спроб: 0';
