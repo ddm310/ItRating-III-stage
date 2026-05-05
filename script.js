@@ -443,6 +443,7 @@ if (!russian) {
             document.querySelector('.game_rules').textContent = 'Праверце сваю памяць! Перад вамі 8 картак - 4 пары знакамітых будынкаў Віцебска. Адкрывайце па дзве карткі і знаходзіце аднолькавыя. Калі адкрыеце ўсе пары - вы перамаглі!';
             document.querySelector('.game_restart').textContent = 'Гуляць нанава';
             document.querySelector('.game_clear').textContent = 'Абнуліць зоркі';
+            document.querySelector('.game_win').textContent = 'Вы выйгралі!';
             break;
     }
 }
