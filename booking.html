@@ -95,17 +95,19 @@
                 <form class="booking_content" id="main">
                     <label for="b_fn" class="visually-hidden">Полное ФИО</label>
                     <input type="text" name="b_fn" class="booking_input_text booking_input fn" id="b_fn"
-                        placeholder='Полное ФИО, например: Иванов Иван Иванович' aria-required="true" required>
+                        placeholder='Полное ФИО, например: Иванов Иван Иванович' aria-required="true" required
+                        title="Заполните это поле.">
                     <label for="b_email" class="visually-hidden">Email</label>
                     <input type="text" name="b_email" class="booking_input_text booking_input" id="b_email"
-                        placeholder='Email, например: example@gmail.com' aria-required="true" required>
+                        placeholder='Email, например: example@gmail.com' aria-required="true" required
+                        title="Заполните это поле.">
                     <label for="excursion" class="visually-hidden">Экскурсия</label>
                     <input type="text" name="excursion" class="booking_input_text booking_input" id="excursion"
-                        aria-required="true" placeholder="Экскурсия" required>
+                        aria-required="true" placeholder="Экскурсия" required title="Заполните это поле.">
                     <div class="booking_flex_div">
                         <label for="people" class="visually-hidden">Количество людей</label>
                         <input type="number" name="people" class="booking_input_not_text booking_input" id="people"
-                            placeholder="Количество людей" aria-required="true" required>
+                            placeholder="Количество людей" aria-required="true" required title="Заполните это поле.">
                         <label for="paying_method" class="visually-hidden">Способ оплаты</label>
                         <select name="paying_method" class="booking_input_not_text booking_input" id="paying_method"
                             required title="Выберите один из пунктов списка.">
@@ -119,8 +121,8 @@
                     </div>
                     <label for="notes" class="visually-hidden">Примечания</label>
                     <textarea name="notes" class="booking_input_text booking_input" id="notes"
-                        placeholder='Примечания, например: "С нами будет ребёнок"' rows="2"
-                        aria-required="true"></textarea>
+                        placeholder='Примечания, например: "С нами будет ребёнок"' rows="2" aria-required="true"
+                        title="Заполните это поле."></textarea>
                     <input type="submit" id="submit" class="booking_input_submit booking_input">
                 </form>
             </div>
