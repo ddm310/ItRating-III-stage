@@ -1,3 +1,4 @@
+// Если пользователь зашёл в первый раз – устанавливаем значения по умолчанию
 if (!localStorage.getItem('starsCollected')) {
     localStorage.setItem('starsCollected', 0)
 }
@@ -27,11 +28,12 @@ function validate(name, email, subject, message, people) {
         return russian ? "Заголовок должен быть не короче 5 символов." : "Загаловак павінен быць не карацейшы за 5 сімвалаў.";
     }
 
-    // Проверка и сообщения
+    // Проверка сообщения
     if (message && message.length < 15) {
         return russian ? "Сообщение должно быть не короче 15 символов." : "Паведамленне павінна быць не карацей 15 сімвалаў.";
     }
 
+    // Проверка количества людей
     if (people && people <= 0) {
         return russian ? "Количество людей должно превышать 0." : "Колькасць людзей мусіць перавышаць 0.";
     }
@@ -81,6 +83,9 @@ function audioPlay(bool) {
     }
 }
 
+// Автозапуск происходит при первом клике пользователя, а не при загрузке страницы 
+// потому, что браузер часто блокирует автовоспроизведение без действия пользователя
+
 // Автозапуск аудио при первом клике пользователя
 document.addEventListener('click', (e) => {
     const isPlayButton = e.target.closest('.play_audio');
@@ -110,22 +115,25 @@ if (!localStorage.getItem('starsCollected')) {
 
 const star = document.querySelector('.secret_star');
 
+// Если пользователь попытался зайти на страницу не собрав 5 звёзд, выводится сообщение
 if (localStorage.getItem('cheat')) {
     alert(russian ? 'Соберите все звёзды, прежде чем играть в секретную мини-игру.' : 'Збярыце ўсе зоркі, перш чым гуляць у сакрэтную міні-гульню.');
     localStorage.removeItem('cheat');
 }
 
+// Если польователь обнулил звёзды, выводится сообщение
 if (localStorage.getItem('cleared')) {
     alert(russian ? 'Звёзды обнулены, собирайте их заново!' : 'Зоркі абнулены, зьбірайце іх нанова!');
     localStorage.removeItem('cleared');
 }
 
 if (star) {
-
+    // Если звезда собрана, даём ей класс
     if (localStorage.getItem(`${star.dataset.page}`) === 'true') {
         star.classList.add('secret_star-collected');
     }
 
+    // Функция, которая показывает ссылку на мини-игру при наличии 5 звёзд
     function minigame() {
         if (localStorage.getItem('starsCollected') === '5' && !document.querySelector('[href="minigame.html"]')) {
             const li = document.createElement('li');
@@ -150,6 +158,7 @@ if (star) {
     })
 }
 
+// Если пользователь на feedback.html, то добавляем обработчик нажатия к кнопке "Отправить"
 if (window.location.pathname.includes('feedback.html')) {
     document.querySelector(".feedback_input_submit").addEventListener("click", (e) => {
         e.preventDefault();
@@ -178,7 +187,7 @@ if (window.location.pathname.includes('feedback.html')) {
         sendMessage(text, 'feedback');
     })
 }
-
+// Если же booking.html, то обработчик добавляется к другой кнопке "Отправить"ы=
 if (window.location.pathname.includes('booking.html')) {
     document.querySelector(".booking_input_submit").addEventListener("click", (e) => {
         e.preventDefault();
@@ -212,12 +221,8 @@ if (window.location.pathname.includes('booking.html')) {
 
 
         sendMessage(text, 'booking', false);
-    })
-}
+    });
 
-
-// Проверяем, на какой странице пользователь
-if (window.location.pathname.includes('booking.html')) {
     document.addEventListener('DOMContentLoaded', () => {
 
         // Получаем параметры из URL
@@ -230,13 +235,12 @@ if (window.location.pathname.includes('booking.html')) {
             excursionInput.value = (russian ? 'Запись на экскурсию ' : 'Запіс на экскурсію ') + `"${excursionName}"`;
             excursionInput.readOnly = true;
         }
-
-
     });
 }
 
 const languageButton = document.querySelector('.nav_button');
 
+// Переключение кнопки
 languageButton.addEventListener('click', () => {
     currentLang = localStorage.getItem('language');
     if (currentLang == 'BEL') {
@@ -252,7 +256,6 @@ languageButton.addEventListener('click', () => {
 })
 
 // Изменяем текста элементов, если язык – белорусский
-
 if (!russian) {
 
     document.title = 'Архітэктурныя жамчужыны Віцебска';
@@ -309,7 +312,8 @@ if (!russian) {
                     breadcrumbsElement.textContent = 'Міні-гульня';
                     break;
             }
-        })};
+        })
+    };
 
     switch (page) {
         case 'index.html':
@@ -391,6 +395,7 @@ if (!russian) {
             document.querySelector('#people').placeholder = 'Колькасць людзей';
             document.querySelector('[for="paying_method"]').textContent = 'Спосаб аплаты';
             document.querySelector('#paying_method').placeholder = 'Спосаб аплаты';
+            document.querySelectorAll('.booking_input:not(.booking_input_submit)').forEach(input => { input.title = 'Запоўніце гэтае поле.' });
             document.querySelector('#paying_method').title = 'Абярыце адзін з пунктаў спісу.';
             document.querySelector('[value="Наличные в BYN"]').textContent = 'Наяўныя грошы (BYN)';
             document.querySelector('[value="Иностранные наличные"]').textContent = 'Наяўныя грошы (замежная валюта)';
@@ -430,6 +435,7 @@ if (!russian) {
             document.querySelector('#topic').placeholder = 'Тэма, напрыклад: "Знойдзена памылка"';
             document.querySelector('[for="mess"]').textContent = 'Паведамленне';
             document.querySelector('#mess').placeholder = 'Паведамленне';
+            document.querySelectorAll('.feedback_input:not(.feedback_input_submit)').forEach(input => { input.title = 'Запоўніце гэтае поле.' });
             document.querySelector('#submit').value = 'Адправіць';
             break;
         case 'minigame.html':
