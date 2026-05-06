@@ -288,28 +288,28 @@ if (!russian) {
 
     if (page != 'index.html') {
         document.querySelector('.breadcrumbs_link').textContent = 'Галоўная';
-        const breadcrumbsCurrent = document.querySelector('.breadcrumbs_current');
-        switch (breadcrumbsCurrent.textContent) {
-            case 'Экскурсии':
-                breadcrumbsCurrent.textContent = 'Экскурсіі';
-                break;
-            case 'Запись на экскурсию':
-                breadcrumbsCurrent.textContent = 'Запіс на экскурсію';
-                break;
-            case 'Викторина':
-                breadcrumbsCurrent.textContent = 'Віктарына';
-                break;
-            case 'О нас':
-                breadcrumbsCurrent.textContent = 'Пра нас';
-                break;
-            case 'Обратная связь':
-                breadcrumbsCurrent.textContent = 'Зваротная сувязь';
-                break;
-            case 'Мини-игра':
-                breadcrumbsCurrent.textContent = 'Міні-гульня';
-                break;
-        }
-    }
+        document.querySelectorAll('.breadcrumbs_element').forEach(breadcrumbsElement => {
+            switch (breadcrumbsElement.textContent) {
+                case 'Экскурсии':
+                    breadcrumbsElement.textContent = 'Экскурсіі';
+                    break;
+                case 'Запись на экскурсию':
+                    breadcrumbsElement.textContent = 'Запіс на экскурсію';
+                    break;
+                case 'Викторина':
+                    breadcrumbsElement.textContent = 'Віктарына';
+                    break;
+                case 'О нас':
+                    breadcrumbsElement.textContent = 'Пра нас';
+                    break;
+                case 'Обратная связь':
+                    breadcrumbsElement.textContent = 'Зваротная сувязь';
+                    break;
+                case 'Мини-игра':
+                    breadcrumbsElement.textContent = 'Міні-гульня';
+                    break;
+            }
+        })};
 
     switch (page) {
         case 'index.html':
@@ -482,5 +482,5 @@ document.querySelectorAll('.excursion_button').forEach(button => {
                 block.classList.remove('excursion_block-active');
             }
         });
-    });
-});
+    })
+})
